@@ -1,7 +1,7 @@
 import pygame
 from helper import resource_path
-from Sprite import *
-from class_player import Player
+from Sprite import GameSprite
+
 
 pygame.init()
 
@@ -10,32 +10,35 @@ screen=pygame.display.set_mode((width,height))
 background=pygame.image.load(resource_path('assets/field.png'))
 pygame.display.set_caption('future game')
 
-
-# player=pygame.image.load(resource_path('assets/КУБ.jpg'))
+player = pygame.image.load(resource_path('assets/ам ням.webp'))
 # player_rect=player.get_rect(center=(width//2,height//2))
-
-sprit1=Player(resource_path('assets/КУБ.jpg'),10,400,65,65,10)
-player_rect=sprit1.get_rect(center=(width//2,height//2))
-
+player_rect=player.get_rect(center=(width//16,height//1.1))
 game=True
+
+vertical_velocity = 0 
+gravity = 1 
 
 FPS=60
 timer=pygame.time.Clock()
 while game:
+    keys=pygame.key.get_pressed()  
     screen.blit(background,(0,0))
-    sprit1.reset()
+    screen.blit(player,player_rect)
     pygame.display.flip()
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             game=False
-    keys=pygame.key.get_pressed()
-    if keys[pygame.K_UP] and sprit1.rect.y >1: 
-        sprit1.up()
-    if keys[pygame.K_DOWN]and sprit1.rect.y < 1000: 
-        sprit1.down()
-    if keys[pygame.K_LEFT]and sprit1.rect.x >1:
-        sprit1.left()
-    if keys[pygame.K_RIGHT]and sprit1.rect.x <600:
-        sprit1.right()
-
+        if keys[pygame.K_UP]: 
+            if event.key == pygame.K_SPACE: 
+                vertical_velocity = -10
+                vertical_velocity += gravity 
+                if player_rect.y >= 465: 
+                    player_rect.y = 465 
+                    vertical_velocity = 0 
+    vertical_velocity += gravity 
+    player_rect.y += vertical_velocity   
+    if keys[pygame.K_LEFT]and player_rect.x >1:
+        player_rect.x -= 4
+    if keys[pygame.K_RIGHT]and player_rect.x < 900:
+        player_rect.x += 4
 pygame.quit()
