@@ -5,7 +5,7 @@ from Sprite import GameSprite
 
 pygame.init()
 
-width,height= 1000,563
+width,height= 1000,563 
 screen=pygame.display.set_mode((width,height))
 background=pygame.image.load(resource_path('assets/field.png'))
 pygame.display.set_caption('future game')
@@ -15,7 +15,7 @@ player = pygame.image.load(resource_path('assets/ам ням.webp'))
 player_rect=player.get_rect(center=(width//16,height//1.1))
 game=True
 
-player_y=500
+player_rect.y=450
 
 vertical_velocity = 0 
 gravity = 1 
@@ -38,10 +38,10 @@ while game:
             jump =True
     else:
         if jump_size >= -10:
-            if jump_size > 0:
-                player_y -= jump_size
+            if jump_size > 110:
+                player_rect.y -= (jump_size ** 2) / 2
             else:
-                player_y += jump_size
+                player_rect.y += (jump_size ** 2) / 2
             jump_size -= 1
         else:
             jump=False
