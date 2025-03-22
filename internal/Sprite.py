@@ -1,4 +1,7 @@
+"подключил необходимые модули"
 import pygame
+
+"создал класс GameSprite"
 
 class GameSprite(pygame.sprite.Sprite):
     def __init__(self,imaged,x,y,sizex,sizey,speed):

@@ -1,5 +1,8 @@
+"подключил необходимые модули"
 import pygame
 from Sprite import GameSprite
+
+"создал класс wall"
 
 class Wall(pygame.sprite.Sprite):
     def __init__(self,color1,color2,color3,wall_x,wall_y,wall_width,wall_height):
