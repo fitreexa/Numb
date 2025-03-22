@@ -10,5 +10,5 @@ class GameSprite(pygame.sprite.Sprite):
         self.sizex=sizex
         self.sizey=sizey
         self.speed=speed
-    def reset(self):
-        pygame.screen.blit(self.image,(self.rect.x,self.rect.y))
+    def reset(self,screen):
+        screen.blit(self.image,(self.rect.x,self.rect.y))
