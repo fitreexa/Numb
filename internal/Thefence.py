@@ -1,11 +1,11 @@
-"подключил необходимые модули"
-
+"""
+подключил необходимые модули
+"""
 import pygame
-
-"создал класс wall"
-
-
 class Wall(pygame.sprite.Sprite):
+    """
+    создал класс wall
+    """
     def __init__(
         self, color1, color2, color3, wall_x, wall_y, wall_width, wall_height
     ):
@@ -22,4 +22,7 @@ class Wall(pygame.sprite.Sprite):
         self.rect.y = wall_y
 
     def draw_wall(self, screen: pygame.Surface):
+        """
+        сделал модуль для отрисовки стен
+        """
         screen.blit(self.image, (self.rect.x, self.rect.y))

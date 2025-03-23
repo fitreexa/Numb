@@ -1,11 +1,11 @@
-"подключил необходимые модули"
-
+"""
+подключил необходимые модули
+"""
 import pygame
-
-"создал класс GameSprite"
-
-
 class GameSprite(pygame.sprite.Sprite):
+    """
+    создал класс GameSprite
+    """
     def __init__(self, imaged, x, y, sizex, sizey, speed):
         super().__init__()
         self.image = pygame.transform.scale(
@@ -19,4 +19,7 @@ class GameSprite(pygame.sprite.Sprite):
         self.speed = speed
 
     def reset(self, screen):
+        """
+        сделал модуль для отрисовки персонажа
+        """
         screen.blit(self.image, (self.rect.x, self.rect.y))
