@@ -1,11 +1,15 @@
 """
 подключил необходимые модули
 """
+
 import pygame
+
+
 class GameSprite(pygame.sprite.Sprite):
     """
     создал класс GameSprite
     """
+
     def __init__(self, imaged, x, y, sizex, sizey, speed):
         super().__init__()
         self.image = pygame.transform.scale(

@@ -1,11 +1,15 @@
 """
 подключил необходимые модули
 """
+
 import pygame
+
+
 class Wall(pygame.sprite.Sprite):
     """
     создал класс wall
     """
+
     def __init__(
         self, color1, color2, color3, wall_x, wall_y, wall_width, wall_height
     ):
