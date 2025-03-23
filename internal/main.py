@@ -1,35 +1,43 @@
-"подключил все модули"
+"""
+подключил все модули"
+"""
 
 import pygame
 from helper import resource_path
 
 pygame.init()
 
-"создал фон"
+"""
+создал фон
+"""
 
 width, height = 1000, 563
 screen = pygame.display.set_mode((width, height))
 background = pygame.image.load(resource_path("assets/field.png"))
 pygame.display.set_caption("future game")
 
-"создал игрока"
+"""
+создал игрока
+"""
 
 player = pygame.image.load(resource_path("assets/ам ням.webp"))
 player_rect = player.get_rect(center=(width // 16, height // 1.1))
 game = True
 
-"создал переменные для работы прыжка"
+"""
+создал переменные для работы прыжка"
+"""
 
 player_rect.y = 450
-vertical_velocity = 0
-gravity = 1
 jump = False
 jump_size = 10
 
 FPS = 60
 timer = pygame.time.Clock()
 
-"создал цикл для работы игры и движение игрока "
+"""
+создал цикл для работы игры и движение игрока 
+"""
 
 while game:
     keys = pygame.key.get_pressed()
