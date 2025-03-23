@@ -28,14 +28,14 @@ sprit3 = GameSprite(aset,950,400,100,100,0)
 
 # player = pygame.image.load(resource_path("assets/ам ням.webp"))
 # player_rect = player.get_rect(center=(width // 16, height // 1.1))
-game = True
-
+GAME = True
+FINISH=False
 """
 создал стены
 """
 
 wall1=Wall(0,123,2,200,500,13,150)
-wall2=Wall(0,150,2,400,500,13,100)       
+wall2=Wall(0,150,2,400,500,13,100)
 wall3=Wall(0,150,2,600,500,13,100)
 wall4=Wall(0,150,2,800,500,13,100)
 
@@ -60,8 +60,8 @@ end=font.render('НЕ ПОБЕДА!!!',True,(255,215,255))
 """
 создал переменные для работы прыжка
 """
-jump = False
-jump_size = 10
+JUMP = False
+JUMP_SIZE = 10
 
 FPS = 60
 timer = pygame.time.Clock()
@@ -70,7 +70,7 @@ timer = pygame.time.Clock()
 создал цикл для работы игры и управления игрока и работы font(a)
 """
 
-while game:
+while GAME:
     keys = pygame.key.get_pressed()
     screen.blit(background, (0, 0))
     player.reset(screen)
@@ -80,27 +80,36 @@ while game:
     wall4.draw_wall(screen)
     if pygame.sprite.collide_rect(player,sprit3):
         screen.blit(win,(200,200))
-        finish=True
-    if pygame.sprite.collide_rect(player,wall1) or pygame.sprite.collide_rect(player,wall2) or pygame.sprite.collide_rect(player,wall3) or pygame.sprite.collide_rect(player,wall4):
+        FINISH=True
+    if pygame.sprite.collide_rect(player,wall1):
         screen.blit(end,(200,200))
-        finish=True
+        FINISH=True
+    if pygame.sprite.collide_rect(player,wall3):
+        screen.blit(end,(200,200))
+        FINISH=True
+    if pygame.sprite.collide_rect(player,wall2):
+        screen.blit(end,(200,200))
+        FINISH=True
+    if pygame.sprite.collide_rect(player,wall4):
+        screen.blit(end,(200,200))
+        FINISH=True
     pygame.display.flip()
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
-            game = False
-    if not jump:
+            GAME = False
+    if not JUMP:
         if keys[pygame.K_UP]:
-            jump = True
+            JUMP = True
     else:
-        if jump_size >= -10:
-            if jump_size > 0:
-                player.rect.y -= (jump_size**2) / 2
+        if JUMP_SIZE >= -10:
+            if JUMP_SIZE > 0:
+                player.rect.y -= (JUMP_SIZE**2) / 2
             else:
-                player.rect.y += (jump_size**2) / 2
-            jump_size -= 1
+                player.rect.y += (JUMP_SIZE**2) / 2
+            JUMP_SIZE -= 1
         else:
-            jump = False
-            jump_size = 10
+            JUMP = False
+            JUMP_SIZE = 10
 
     if keys[pygame.K_LEFT] and player.rect.x > 1:
         player.rect.x -= 4
